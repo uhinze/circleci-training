@@ -21,18 +21,11 @@ jobs:
          at: workspace_mount
      - run: ls .
      - run: ls workspace_mount
-  three:
-    <<: *one
-    docker:
-       - image: ubuntu
 workflows:
  version: 2
  one_and_two:
    jobs:
      - one
      - two:
-         requires:
-           - one
-     - three:
          requires:
            - one
