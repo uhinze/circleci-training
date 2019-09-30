@@ -6,6 +6,7 @@ jobs:
    steps:
      - checkout
      - run: echo "A first hello"
+     - run: mkdir -p my_workspace
      - run: echo "I am a workspace" > my_workspace/output.txt
      - persist_to_workspace:
          root: my_workspace
