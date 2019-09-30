@@ -1,6 +1,6 @@
 version: 2
 jobs:
- one: &one
+  one: &one
    docker:
      - image: circleci/ruby:2.4.1
    steps:
@@ -12,7 +12,7 @@ jobs:
          root: my_workspace
          paths:
            - output.txt
- two:
+  two:
    docker:
      - image: circleci/ruby:2.4.1
    steps:
