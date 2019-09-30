@@ -1,6 +1,6 @@
 version: 2
 jobs:
- one:
+ one: &one
    docker:
      - image: circleci/ruby:2.4.1
    steps:
@@ -16,11 +16,15 @@ jobs:
    docker:
      - image: circleci/ruby:2.4.1
    steps:
-     - run: *current
+     - run: ls . &current
      - attach_workspace:
          at: workspace_mount
      - run: *current
      - run: ls workspace_mount
+  three:
+    <<: *one
+    docker:
+       - image: ubuntu
 workflows:
  version: 2
  one_and_two:
@@ -29,6 +33,3 @@ workflows:
      - two:
          requires:
            - one
-
-refs:
-  - list_current: ls . &current
