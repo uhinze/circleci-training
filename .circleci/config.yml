@@ -6,16 +6,24 @@ jobs:
    steps:
      - checkout
      - run: echo "A first hello"
-     - run: echo "I am waiting" && sleep 5
+     - run: echo "I am a workspace" > my_workspace/output.txt
+     - persist_to_workspace:
+         root: my_workspace
+         paths:
+           - output.txt
  two:
    docker:
      - image: circleci/ruby:2.4.1
    steps:
-     - checkout
-     - run: echo "A second hello"
+     - run: ls workspace_mount
+     - attach_workspace:
+         at: workspace_mount
+     - run: ls workspace_mount
 workflows:
  version: 2
  one_and_two:
    jobs:
      - one
-     - two
+     - two:
+         requires:
+           - one
