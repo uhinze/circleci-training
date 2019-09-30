@@ -16,9 +16,10 @@ jobs:
    docker:
      - image: circleci/ruby:2.4.1
    steps:
-     - run: ls workspace_mount
+     - run: ls .
      - attach_workspace:
          at: workspace_mount
+     - run: ls .
      - run: ls workspace_mount
 workflows:
  version: 2
